@@ -104,10 +104,10 @@ void p4()
 int main()
 {
 
-  /* Generate an unique key based on the path and id by using funtion keytok() key is used for identifying shared memory segment */
+  /* Generate an unique key based on the path and id by using funtion ftok() key is used for identifying shared memory segment */
   char *path = "./";
   int id = 1;
-  key_t key = keytok(path, id);
+  key_t key = ftok(path, id);
 
   int shmid, pid1, pid2, pid3, pid4;
   char *shmadd;
@@ -132,7 +132,7 @@ int main()
   semctl_arg.val = 1;
 
   /* Create semaphores */
-  sem_id = semget(SEMKEY, NSEMS, IPC_CREAT | 0666);
+  sem_id = semget(SEMKEY, NUMSEMS, IPC_CREAT | 0666);
   if (sem_id < 0)
     printf("Error in creating the semaphore./n");
 
